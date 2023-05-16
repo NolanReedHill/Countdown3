@@ -1,50 +1,25 @@
 import React, {useEffect, useState} from 'react';
 import WeatherData from './WeatherData.js';
-export default function TextInput() {
-
-    const [weatherData, setWeatherData] = useState([]);
-
+export default function TextInput({data}) {
+    const [geoData, setGeoData] = useState([]);
+    const address = data.City+","+data.State+","+data.Country;
+    const url = new URL("http://api.openweathermap.org/geo/1.0/direct");
+    url.searchParams.append("q",address);
+    url.searchParams.append("limit",1);
+    url.searchParams.append("appid","8eab36113a8ca510a047d789045f2898");
   useEffect(() => {
-    fetch("https://opentdb.com/api.php?amount=5")
+    fetch(url)
     .then((response) => response.json())
-    .then((data) => setWeatherData(data.results))
+    .then((data) => setGeoData(data))
     .catch((error) => console.log("Error:",error))
   }, [])
-    console.log(weatherData);
-    function handleSubmit(e) {
-      // Prevent the browser from reloading the page
-      e.preventDefault();
-  
-      // Read the form data
-      const form = e.target;
-      const formData = new FormData(form);
-  
- 
-      const formJson = Object.fromEntries(formData.entries());
-      console.log(formJson);
-    }
-  
     return (
         <>
-      <form method="post" onSubmit={handleSubmit}>
-        <label>
-          City: <input name="City" 
-          />
-        </label>
-        <label>
-          State: <input name="State" 
-          />
-        </label>
-        <label>
-          Country: 
-          <input name="Country"
-          />
-        </label>
-        <button type="submit">Search</button>
-      </form>
-    <WeatherData
-    wdata={weatherData}
-    />
+        {geoData.length === 0? <p>Loading</p> : 
+      <WeatherData
+      data = {geoData}
+      />
+    }
     </>
 
     );
