@@ -1,3 +1,4 @@
+
 .App {
   text-align: center;
 }
@@ -37,7 +38,6 @@
   }
 }
 label {
-  color: #B4886B;
   font-weight: bold;
   display: block;
   width: 150px;
@@ -48,4 +48,101 @@ button {
   background-color: green;
   width: 150px;
   text-align: center;
+}
+
+body {
+  background-color: #3d79d8;
+}
+
+#scrollBox {
+  width: 600px;
+  overflow: auto;
+  margin: auto;
+  border-style: solid;
+  scrollbar-color: gray #3d79d8;
+
+}
+
+::-webkit-scrollbar {
+  background-color: #3d79d8;
+}
+
+::-webkit-scrollbar-thumb {
+  background: gray;
+}
+
+#hourly {
+  display: flex;
+  flex-direction: row;
+  
+}
+
+.hourlyInfo {
+  border-right-style: solid;
+  width: 100px;
+}
+
+#a22 {
+  border-right-style: none;
+}
+
+.dailyInfo {
+  display: flex;
+  margin: auto;
+  height: 100px;
+  width: 500px;
+  border-style: solid;
+  border-bottom-style: none;
+}
+
+#b7 {
+  border-bottom-style: solid;
+}
+
+.pics {
+  align-items: flex-start;
+}
+
+.dayOfWeek {
+  margin: auto;
+}
+
+.dailyText {
+  margin: auto;
+}
+
+.newsBox {
+  width: 1150px;
+  overflow: auto;
+  margin: auto;
+  border-style: solid;
+  border-left-color: #9c9998;
+  border-right-color: #9c9998;
+}
+
+.innerNewsBox {
+  display: flex;
+  flex-direction: row;
+}
+
+.newsStory {
+  width: 230px;
+  border-left-style: solid;
+  border-color: #9c9998;
+}
+
+.newsStory:hover {
+  opacity: 60%;
+}
+
+#c0 {
+  border-left: none;
+}
+
+form {
+  margin: auto;
+}
+
+.textBoxes {
+  background-color: white;
 }

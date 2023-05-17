@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import WeatherData from './WeatherData.js';
+import WeatherApp from './WeatherApp.js';
 export default function TextInput({data}) {
+    const [isAddressValid, setIsAddressValid] = useState(true);
     const [geoData, setGeoData] = useState([]);
     const address = data.City+","+data.State+","+data.Country;
     const url = new URL("http://api.openweathermap.org/geo/1.0/direct");
@@ -15,6 +17,9 @@ export default function TextInput({data}) {
   }, [])
     return (
         <>
+        {isAddressValid? <p1></p1> :
+          <WeatherApp></WeatherApp>
+        }
         {geoData.length === 0? <p>Loading</p> : 
       <WeatherData
       data = {geoData}

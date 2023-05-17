@@ -1,5 +1,7 @@
 import {useState, React} from 'react';
 import TextInput from './TextInput.js';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
 export default function WeatherApp() {
     const [isAddress, setIsAddress] = useState(false);
     const [formSubmitted, setFormSubmitted] = useState(false);
@@ -21,27 +23,42 @@ export default function WeatherApp() {
         }
       }
     return (
-        <div>
+        <div className= "inputForm">
         
-        <h1>Weather Tracker</h1>
+        <h1>Nolan's Weather App</h1>
         {formSubmitted? <p1></p1> :
             <p1>Enter your address</p1>}
         {formSubmitted? <p1></p1> : 
         <form method="post" onSubmit={handleSubmit}>
         <label>
-          City: <input name="City" 
+          City: <TextField 
+          className= "textBoxes" 
+          name="City" 
+          variant= "outlined"
+          required
           />
         </label>
         <label>
-          State (optional): <input name="State" 
+          State (optional): 
+          <TextField 
+          className= "textBoxes" 
+          name="State" 
           />
         </label>
         <label>
           Country: 
-          <input name="Country"
+          <TextField 
+          className= "textBoxes" 
+          name="Country"
+          required
           />
         </label>
-        <button type="submit">Search</button>
+        <Button 
+        className= "searchButton"
+        type="submit"
+        variant="contained"
+        color="success"
+        >Search</Button>
       </form>
 }
       <div>
