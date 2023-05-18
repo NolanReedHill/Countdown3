@@ -17,15 +17,23 @@ export default function TextInput({data}) {
     .catch((error) => console.log("Error:",error))
   }, [])
 
-  const timerId = setTimeout(() => {
-    setIsAddressValid(false);
-  }, 5000)
+  useEffect(() => {
+    const timer = setTimeout(() => setIsAddressValid(false), 5000);
+    return () => clearTimeout(timer);
+  }, []);
   function badAddress() {
     window.location.reload();
   }
+  function displayPopup() {
+    console.log(geoData.length===0)
+    if (isAddressValid && geoData.length ===0)
+    return true;
+    if (geoData.length !== 0)
+    return true;
+  }
     return (
         <>
-        {isAddressValid? <p></p> :
+        {displayPopup()? <p></p> :
         <Popup content={<>
           <b>Location Not Found</b>
           <p>Please try a different location.</p>
@@ -34,9 +42,11 @@ export default function TextInput({data}) {
 
         }
         {geoData.length === 0? <p>Loading</p> : 
+        <>
       <WeatherData
       data = {geoData}
       />
+      </>
     }
     </>
 
