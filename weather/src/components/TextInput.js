@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import WeatherData from './WeatherData.js';
-import WeatherApp from './WeatherApp.js';
+import Popup from './Popup.js';
+import { Button } from '@mui/material';
 export default function TextInput({data}) {
     const [isAddressValid, setIsAddressValid] = useState(true);
     const [geoData, setGeoData] = useState([]);
@@ -15,10 +16,22 @@ export default function TextInput({data}) {
     .then((data) => setGeoData(data))
     .catch((error) => console.log("Error:",error))
   }, [])
+
+  const timerId = setTimeout(() => {
+    setIsAddressValid(false);
+  }, 5000)
+  function badAddress() {
+    window.location.reload();
+  }
     return (
         <>
-        {isAddressValid? <p1></p1> :
-          <WeatherApp></WeatherApp>
+        {isAddressValid? <p></p> :
+        <Popup content={<>
+          <b>Location Not Found</b>
+          <p>Please try a different location.</p>
+          <Button onClick= {badAddress} variant= "contained">Go Back</Button>
+        </>}/>
+
         }
         {geoData.length === 0? <p>Loading</p> : 
       <WeatherData

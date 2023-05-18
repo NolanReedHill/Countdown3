@@ -27,7 +27,7 @@ export default function WeatherApp() {
         
         <h1>Nolan's Weather App</h1>
         {formSubmitted? <p1></p1> :
-            <p1>Enter your address</p1>}
+            <p1>Enter Location</p1>}
         {formSubmitted? <p1></p1> : 
         <form method="post" onSubmit={handleSubmit}>
         <label>
@@ -58,6 +58,7 @@ export default function WeatherApp() {
         type="submit"
         variant="contained"
         color="success"
+        style= {{margin: "15px"}}
         >Search</Button>
       </form>
 }
